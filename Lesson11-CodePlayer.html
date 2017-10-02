@@ -12,7 +12,14 @@
         margin:0;
         width:50%;
         resize:none;
+        border-top:none;
+        border-color:grey;
+        
         }
+    iframe{
+        border:none;
+            
+    }
     body{
         padding:0;
         margin: 0;
@@ -34,11 +41,11 @@
             width:233px;
             margin: 0 auto;
         }
-        #html{
+        #htmlPanel{
             border-top-left-radius: 4px;
             border-bottom-left-radius: 4px;
         }
-        #output{
+        #outputPanel{
             border-top-right-radius: 4px;
             border-bottom-right-radius: 4px;
             border-right:1px solid grey;
@@ -57,7 +64,10 @@
         .clickableButton{
             background-color:#E8F2FF;
         }
-        
+        .panel{
+            float:left;
+            width:50%;
+        }
          
     </style>
     </head>
@@ -74,7 +84,9 @@
     </div>
     </div>
     <div id="bodyContainer">
-        <textarea id="htmlTextArea">Hello World</textarea>
+        <textarea id="htmlPanel" class="panel"></textarea>
+        <iframe id="outputPanel" class="panel"></iframe>
+    
     </div>
     
     
@@ -92,9 +104,15 @@
            $(this).removeClass("highlightedButton");
               
         });
-        $("textarea").height($(window).height() - $("#header").height() - 20);
-           
-      
+        $(".panel").height($(window).height() - $("#header").height() - 20);
+        $(".panel").width(($(window).width()/2)-20);   
+        $("iframe").contents().find("html").html($("#htmlPanel").val());  
+        
+        $("textArea").on('this', function(){
+            $("iframe").contents().find("html").html($("#htmlPanel").val());    
+        });
+    
+    
     </script>
     
     
